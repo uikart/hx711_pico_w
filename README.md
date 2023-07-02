@@ -1,3 +1,7 @@
+# clone of the orginal repository
+This is the clone of the https://github.com/endail/hx711-pico-c. I've made some changes related to my Hardware(RPi Pico W) and new SDK.
+The name of repo has been changed from hx711-pico-c to hx711-pico-w.
+
 # hx711-pico-c
 
 This is my implementation of reading from a HX711 via a Raspberry Pi Pico. It uses the RP2040's PIO feature to be as efficient as possible. It has two major functions: reading from a [single HX711](#how-to-use-hx711_t) and reading from [multiple HX711s](#how-to-use-hx711_multi_t).
