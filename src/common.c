@@ -33,7 +33,7 @@
 const hx711_config_t HX711__DEFAULT_CONFIG = {
     .clock_pin = 0,
     .data_pin = 0,
-    .pio = pio0,
+    .pio = pio1,
     .pio_init = hx711_reader_pio_init,
     .reader_prog = &hx711_reader_program,
     .reader_prog_init = hx711_reader_program_init

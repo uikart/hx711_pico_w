@@ -115,7 +115,7 @@ bitloop:
                             ; manual 'push noblock' is not used in favour of
                             ; autopush, which is configured in the init
                             ; function below.
-
+	push noblock
                             ; Defer obtaining the gain from the application
                             ; until the last moment. So:
 
@@ -297,7 +297,7 @@ void hx711_reader_program_init(hx711_t* const hx) {
     sm_config_set_in_shift(
         &cfg,
         false,            //false = shift in left
-        true,             //true = autopush enabled
+        false,             //true = autopush enabled
         HX711_READ_BITS); //autopush on 24 bits
 
     pio_sm_clear_fifos(

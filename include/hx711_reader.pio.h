@@ -13,7 +13,7 @@
 // ------------ //
 
 #define hx711_reader_wrap_target 3
-#define hx711_reader_wrap 13
+#define hx711_reader_wrap 14
 
 #define hx711_reader_HZ 10000000
 
@@ -27,19 +27,20 @@ static const uint16_t hx711_reader_program_instructions[] = {
     0xe001, //  5: set    pins, 1                    
     0x4001, //  6: in     pins, 1                    
     0x1185, //  7: jmp    y--, 5          side 0 [1] 
-    0x9880, //  8: pull   noblock         side 1     
-    0x6020, //  9: out    x, 32                      
-    0x1023, // 10: jmp    !x, 3           side 0     
-    0xa041, // 11: mov    y, x                       
-    0xe101, // 12: set    pins, 1                [1] 
-    0x118c, // 13: jmp    y--, 12         side 0 [1] 
+    0x8000, //  8: push   noblock                    
+    0x9880, //  9: pull   noblock         side 1     
+    0x6020, // 10: out    x, 32                      
+    0x1023, // 11: jmp    !x, 3           side 0     
+    0xa041, // 12: mov    y, x                       
+    0xe101, // 13: set    pins, 1                [1] 
+    0x118d, // 14: jmp    y--, 13         side 0 [1] 
             //     .wrap
 };
 
 #if !PICO_NO_HARDWARE
 static const struct pio_program hx711_reader_program = {
     .instructions = hx711_reader_program_instructions,
-    .length = 14,
+    .length = 15,
     .origin = -1,
 };
 
@@ -160,7 +161,7 @@ void hx711_reader_program_init(hx711_t* const hx) {
     sm_config_set_in_shift(
         &cfg,
         false,            //false = shift in left
-        true,             //true = autopush enabled
+        false,             //true = autopush enabled
         HX711_READ_BITS); //autopush on 24 bits
     pio_sm_clear_fifos(
         hx->_pio,

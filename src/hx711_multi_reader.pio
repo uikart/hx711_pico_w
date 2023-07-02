@@ -179,7 +179,7 @@ void hx711_multi_pio_init(hx711_multi_t* const hxm) {
     pio_interrupt_clear(
         hxm->_pio,
         HX711_MULTI_CONVERSION_DONE_IRQ_NUM);
-    
+
 
     // make sure data ready is valid and not routable
     // although this is not strictly necessary

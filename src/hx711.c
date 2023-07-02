@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 #include <assert.h>
+#include <stdio.h>
 #include <stdint.h>
 #include "hardware/gpio.h"
 #include "hardware/pio.h"
@@ -78,6 +79,8 @@ void hx711_init(
             hx->_reader_prog = config->reader_prog;
 
             util_gpio_set_output(hx->_clock_pin);
+
+            gpio_put(hx->_clock_pin,true);
 
             /**
              * There was originally a call here to gpio_put on the
@@ -267,7 +270,6 @@ int32_t hx711_get_value(hx711_t* const hx) {
     assert(hx711__is_state_machine_enabled(hx));
 
     uint32_t rawVal;
-
     HX711_MUTEX_BLOCK(hx->_mut, 
 
         /**
